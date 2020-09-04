@@ -6,19 +6,19 @@ GOOGLE_TOKEN='1//base64-foobar'
 # Your Google bucket ID. See e.g. https://support.google.com/googleplay/android-developer/answer/6135870
 GOOGLE_BUCKET='pubsite_prod_rev_12345678901234567890'
 # Path to Google download dir.
-GOOGLE_DOWNLOAD_DIR='..stats/google'
-# Prefix for Google processing files. Suffix .csv / .xml / .db will be added.
-GOOGLE_PROCESS_PREFIX='..stats/google'
+GOOGLE_DOWNLOAD_DIR='download/google'
+# Prefix for Google processing output files. Suffix .csv / .xml / .db will be added.
+GOOGLE_PROCESS_PREFIX='process/google'
 # Google app ID. Will be stripped from downloaded file names. May be empty.
 GOOGLE_APP_ID='com.domain.app_id'
 # Path to Google app version mapping file.
-GOOGLE_VERSIONS_FILE='../stats/google_versions.txt'
+GOOGLE_VERSIONS_FILE='google_versions.txt'
 
 # Your Apple access token. See e.g. https://help.apple.com/itc/contentreporterguide/en.lproj/static.html#apd3552c62e4
 APPLE_TOKEN='01234567-89ab-cdef-0123-456789abcdef'
 # Your Apple vendor ID. See e.g. https://discussions.apple.com/thread/3308523
 APPLE_VENDOR='12345678'
 # Path to Apple download dir.
-APPLE_DOWNLOAD_DIR='..stats/apple'
-# Prefix for Apple processing files. Suffix .csv / .xml / .db will be added.
-APPLE_PROCESS_PREFIX='..stats/apple'
+APPLE_DOWNLOAD_DIR='download/apple'
+# Prefix for Apple processing output files. Suffix .csv / .xml / .db will be added.
+APPLE_PROCESS_PREFIX='process/apple'
