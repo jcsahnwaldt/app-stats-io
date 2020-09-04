@@ -28,7 +28,8 @@ Clone the repo. Then find (or generate, respectively) the following configuratio
 See [`config_template.rb`](config_template.rb) for details.
 
 Create folders in which you want to store the downloaded / processed data.
-Copy `config_template.rb` to `config.rb` and enter your configuration data. Then run [`make`](Makefile):
+Copy `config_template.rb` to `config.rb` and enter your configuration data.
+Then run [`make`](Makefile):
 
 * `make download_google` downloads Google data
 * `make download_apple` downloads Apple data
