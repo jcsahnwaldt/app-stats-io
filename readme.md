@@ -15,6 +15,8 @@ but your data processing needs will likely be different.
 [`pipe.rb`](pipe.rb) is a little Ruby library that lets one describe
 complex pipelines for reading, processing and writing tabular data
 from and to CSV, XML and SQLite files with a few lines of code.
+Many of its features (but by far not all) are used in [`process.rb`](process.rb),
+[`process_google.rb`](process_google.rb) and [`process_apple.rb`](process_apple.rb).
 
 ## Usage
 
