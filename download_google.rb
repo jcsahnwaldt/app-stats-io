@@ -1,19 +1,15 @@
 # Similar to `gsutil -m cp -r`
 # See https://github.com/GoogleCloudPlatform/gsutil
 
-raise 'expected arguments: access token, bucket name, target directory, app id' if ARGV.length != 4
-$token, $name, $dir, $strip = ARGV
+raise 'expected arguments: access token, bucket name, delay, target directory, app id' if ARGV.length != 5
+$token, $name, $delay, $dir, $strip = ARGV
+$delay = Float($delay)
 $strip += '_' unless $strip.empty?
 
 require 'google/cloud/storage'
 require 'signet/oauth_2/client'
 require 'date'
 require 'fileutils'
-
-# sleep: fewer conns / files open at a time, makes process faster and more robust
-# should be as low as possible without causing too many errors
-# optimal value depends on network performance and system settings
-DELAY = 0.0 # 0.04
 
 $counts = Hash.new(0)
 $lock = Mutex.new
@@ -35,7 +31,7 @@ def download(src)
     if stime <= dtime
         log('OLD  ', name)
     else
-        sleep(DELAY)
+        sleep($delay)
         $threads << Thread.new do
             tries = 0
             log('START', name)
@@ -50,7 +46,7 @@ def download(src)
                 tries += 1
                 if tries < 2
                     log('RETRY', name, e)
-                    sleep(tries * DELAY)
+                    sleep(tries * $delay)
                     retry
                 else
                     log('FAIL ', name, e)

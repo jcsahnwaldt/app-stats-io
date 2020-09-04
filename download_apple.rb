@@ -1,19 +1,15 @@
 # Reverse engineered from Reporter.jar
 # See https://help.apple.com/itc/appsreporterguide/
 
-raise 'expected arguments: access token, vendor number, target directory' if ARGV.length != 3
-$token, $vendor, $dir = ARGV
+raise 'expected arguments: access token, vendor number, delay, target directory' if ARGV.length != 4
+$token, $vendor, $delay, $dir = ARGV
+$delay = Float($delay)
 
 require 'net/http'
 require 'json'
 require 'date'
 require 'zlib'
 require 'fileutils'
-
-# sleep: fewer conns / files open at a time, makes process faster and more robust
-# should be as low as possible without causing too many errors
-# optimal value depends on network performance and system settings
-DELAY = 0.01
 
 $counts = Hash.new(0)
 $lock = Mutex.new
@@ -54,7 +50,7 @@ def download(mode, date)
             tries += 1
             if tries < 2
                 log('RETRY', mode, date, e)
-                sleep(tries * DELAY)
+                sleep(tries * $delay)
                 retry
             else
                 log('FAIL ', mode, date, e)
@@ -67,7 +63,7 @@ def download_all(mode, date, last, method, delta, pat)
     while date < last
         download(mode, date.strftime(pat))
         date = date.send(method, delta)
-        sleep(DELAY)
+        sleep($delay)
     end
 end
 
