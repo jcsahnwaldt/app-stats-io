@@ -3,6 +3,6 @@ run gsutil_install.sh and copy gs_oauth2_refresh_token from .boto to config.rb
 
 gsutil_install.sh installs gsutil in local venv/ dir and creates .boto
 
-gsutil_uninstall.sh removes venv/
+gsutil_uninstall.sh removes local venv/ dir
 
-gsutil_download.sh does the same thing as download_google.rb, but much slower
+gsutil_download.sh is similar to download_google.rb, but much slower
