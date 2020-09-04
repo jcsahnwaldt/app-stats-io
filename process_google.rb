@@ -11,6 +11,8 @@ header_converter =
 
 $src_options[:header_converters] = header_converter
 
+# the versions file has five tab-separated columns: commit date, commit hash,
+# version string, version code, publish date (empty for unpublished versions)
 $versions = {}
 CSV.foreach($versions_file, col_sep: "\t") do |row|
     next unless row[4]  # skip unpublished versions
