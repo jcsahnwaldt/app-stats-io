@@ -33,6 +33,8 @@ values as command line arguments:
 
 * [`download_google.rb`](download_google.rb) downloads Google data
 * [`download_apple.rb`](download_apple.rb) downloads Apple data
+* [`process_google.rb`](process_google.rb) processes Google data
+* [`process_apple.rb`](process_apple.rb) processes Apple data
 
 ## Known issues
 
