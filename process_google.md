@@ -35,17 +35,17 @@ Most stats/installs/installs_*.csv files have the following columns:
     - ignore, Apple doesn't provide similar information
 
 - Daily Device Installs:
-    - >0 on ~80% of days
+    - \>0 on ~80% of days
     - use to calculate total installs by version and year
 
 - Daily Device Uninstalls:
-    - >0 on ~70% of days until 2019-07-28
+    - \>0 on ~70% of days until 2019-07-28
     - 0 since 2019-07-29
     - Question about 0 values without answer: https://support.google.com/googleplay/thread/25947807
     - ignore, Apple doesn't provide similar information
 
 - Daily Device Upgrades:
-    - >0 on ~10% of days until 2019-07-28 (higher in DEKT years, lower in non-DEKT years)
+    - \>0 on ~10% of days until 2019-07-28
     - 0 since 2019-07-29
     - ignore, only calculate new installs
 
