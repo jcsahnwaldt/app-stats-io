@@ -16,8 +16,9 @@ Clone the repo. Then find (or generate, respectively) the following configuratio
 * Your Apple access token
 * Your Apple vendor ID
 
-See [`config_template.rb`](config_template.rb) for details. Copy `config_template.rb` to
-`config.rb` and enter your configuration data. Then run `make`:
+See [`config_template.rb`](config_template.rb) for details.
+Create folders in which you want to store the downloaded / processed data.
+Copy `config_template.rb` to `config.rb` and enter your configuration data. Then run `make`:
 
 * `make download_google` downloads Google data
 * `make download_apple` downloads Apple data
@@ -27,7 +28,11 @@ See [`config_template.rb`](config_template.rb) for details. Copy `config_templat
 * `make process` processes all data
 * `make all` or `make` downloads and processes all data
 
-You can also call the Ruby scripts directly and pass the configuration values as command line arguments.
+Of course, you can also call the Ruby scripts directly and pass the configuration
+values as command line arguments:
+
+* [`download_google.rb`](download_google.rb) downloads Google data
+* [`download_apple.rb`](download_apple.rb) downloads Apple data
 
 ## Known issues
 
