@@ -1,6 +1,6 @@
 # Copy this file to config.rb and replace the example values with your data.
 
-# The syntax of this file works for ruby require, make include, bash source
+# The syntax of this file works for ruby require, make include, bash source.
 # Its suffix is .rb because otherwise ruby require doesn't work.
 
 # Having too many connections and/or files open at a time can lead to errors
