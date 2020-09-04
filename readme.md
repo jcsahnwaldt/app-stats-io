@@ -18,6 +18,12 @@ from and to CSV, XML and SQLite files with a few lines of code.
 Many of its features (but by far not all) are used in [`process.rb`](process.rb),
 [`process_google.rb`](process_google.rb) and [`process_apple.rb`](process_apple.rb).
 
+## Requirements
+
+Tested with Ruby 2.7.1, older versions may not work.
+
+TODO: list required Ruby gems.
+
 ## Usage
 
 Clone the repo. Then find (or generate, respectively) the following configuration values:
