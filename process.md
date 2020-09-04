@@ -1,4 +1,3 @@
-----------------------------------------
 Main idea:
 
 Calculate number of new installs by version, year and total.
