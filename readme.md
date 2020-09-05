@@ -8,7 +8,7 @@ The download scripts [`download_google.rb`](download_google.rb) and
 as they are.
 
 The processing scripts [`process_google.rb`](process_google.rb)
-and [`process_apple.rb`](process_apple.rb) are merely examples that
+and [`process_apple.rb`](process_apple.rb) are mostly examples that
 you should probably modify before running them - they are fine for me,
 but your data processing needs will likely be different.
 
