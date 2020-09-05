@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 # Similar to `gsutil -m cp -r`
 # See https://github.com/GoogleCloudPlatform/gsutil
 

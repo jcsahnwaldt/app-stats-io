@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 
 if ARGV.length == 0
     require_relative 'config'

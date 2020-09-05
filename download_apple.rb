@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 # Reverse engineered from Reporter.jar
 # See https://help.apple.com/itc/appsreporterguide/
 
