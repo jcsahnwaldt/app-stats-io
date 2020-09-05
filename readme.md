@@ -22,31 +22,38 @@ Many of its features (but by far not all) are used in [`process.rb`](process.rb)
 
 Tested with Ruby 2.7.1, older versions may not work.
 
-TODO: list required Ruby gems.
-
 ## Usage
 
-Clone this repo. Then find (or generate) the following configuration values:
+### Installation
+
+Clone this repository.
+
+TODO: list required Ruby gems.
+
+### Configuration
+
+Find (or generate) the following configuration values:
 
 * Your Google access token
 * Your Google bucket ID
 * Your Apple access token
 * Your Apple vendor ID
 
-See [`config_template.rb`](config_template.rb) for details.
+See [`config_template.rb`](config_template.rb) for details. TODO: describe
+how to find / generate the values.
 
 Create folders in which you want to store the downloaded / processed data.
 
-The most convenient way to configure the download and processing scripts is
-copying `config_template.rb` to `config.rb` and replacing the example values
-with your configuration data.
+### Execution
 
 * [`download_google.rb`](download_google.rb) downloads Google data
 * [`download_apple.rb`](download_apple.rb) downloads Apple data
 * [`process_google.rb`](process_google.rb) processes Google data
 * [`process_apple.rb`](process_apple.rb) processes Apple data
 
-When one of these scripts is called without arguments, it reads its configuration
+A convenient way to configure the scripts is copying `config_template.rb` to
+`config.rb` and replacing the example values with your configuration data.
+When the scripts are called without arguments, they read their configuration
 from `config.rb`. Creating `config.rb` is not strictly necessary though: If one
 of these commands is called with command line arguments, it ignores `config.rb`
 and takes all its configuration values from the arguments.
