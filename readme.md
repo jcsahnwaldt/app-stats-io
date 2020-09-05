@@ -12,14 +12,6 @@ and [`process_apple.rb`](process_apple.rb) are mostly examples that
 you should probably modify before running them - they are fine for me,
 but your data processing needs will likely be different.
 
-## pipe.rb
-
-[`pipe.rb`](pipe.rb) is a little Ruby library that lets one describe
-complex pipelines for reading, processing and writing tabular data
-from and to CSV, XML and SQLite files with a few lines of code.
-Many of its features (but by far not all) are used in [`process.rb`](process.rb),
-[`process_google.rb`](process_google.rb) and [`process_apple.rb`](process_apple.rb).
-
 ## Requirements
 
 Tested with Ruby 2.7.1, older versions may not work.
@@ -75,6 +67,14 @@ You can also use these [`Makefile`](Makefile) targets:
 * `make all` or just `make` - download and process all data
 
 Since the `Makefile` targets call the scripts without arguments, they require `config.rb`.
+
+## pipe.rb
+
+[`pipe.rb`](pipe.rb) is a little Ruby library that lets one describe
+complex pipelines for reading, processing and writing tabular data
+from and to CSV, XML and SQLite files with a few lines of code.
+Many of its features (but by far not all) are used in [`process.rb`](process.rb),
+[`process_google.rb`](process_google.rb) and [`process_apple.rb`](process_apple.rb).
 
 ## Known issues
 
