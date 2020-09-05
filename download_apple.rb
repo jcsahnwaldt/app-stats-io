@@ -1,8 +1,14 @@
 # Reverse engineered from Reporter.jar
 # See https://help.apple.com/itc/appsreporterguide/
 
-raise 'expected arguments: access token, vendor number, delay, target directory' if ARGV.length != 4
-$token, $vendor, $delay, $dir = ARGV
+if ARGV.length == 0
+    require_relative 'config'
+    $token, $vendor, $delay, $dir = APPLE_TOKEN, APPLE_VENDOR, APPLE_DELAY, APPLE_DOWNLOAD_DIR
+elsif ARGV.length == 4
+    $token, $vendor, $delay, $dir = ARGV
+else
+    raise 'expected arguments: access token, vendor number, delay, target directory'
+end
 $delay = Float($delay)
 
 require 'net/http'

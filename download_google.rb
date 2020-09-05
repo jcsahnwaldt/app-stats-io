@@ -1,8 +1,14 @@
 # Similar to `gsutil -m cp -r`
 # See https://github.com/GoogleCloudPlatform/gsutil
 
-raise 'expected arguments: access token, bucket name, delay, target directory, app id' if ARGV.length != 5
-$token, $name, $delay, $dir, $strip = ARGV
+if ARGV.length == 0
+    require_relative 'config'
+    $token, $name, $delay, $dir, $strip = GOOGLE_TOKEN, GOOGLE_BUCKET, GOOGLE_DELAY, GOOGLE_DOWNLOAD_DIR, GOOGLE_APP_ID
+elsif ARGV.length == 5
+    $token, $name, $delay, $dir, $strip = ARGV
+else
+    raise 'expected arguments: access token, bucket name, delay, target directory, app id'
+end
 $delay = Float($delay)
 $strip += '_' unless $strip.empty?
 

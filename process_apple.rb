@@ -1,6 +1,12 @@
 
-raise 'expected arguments: src dir, dst prefix' if ARGV.length != 2
-$src_dir, $dst_prefix = ARGV
+if ARGV.length == 0
+    require_relative 'config'
+    $src_dir, $dst_prefix =  APPLE_DOWNLOAD_DIR, APPLE_PROCESS_PREFIX
+elsif ARGV.length == 2
+    $src_dir, $dst_prefix = ARGV
+else
+    raise 'expected arguments: src dir, dst prefix'
+end
 
 require_relative 'process'
 

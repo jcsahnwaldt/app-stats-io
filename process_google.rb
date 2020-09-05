@@ -1,6 +1,12 @@
 
-raise 'expected arguments: src dir, dst prefix, versions file' if ARGV.length != 3
-$src_dir, $dst_prefix, $versions_file = ARGV
+if ARGV.length == 0
+    require_relative 'config'
+    $src_dir, $dst_prefix, $versions_file =  GOOGLE_DOWNLOAD_DIR, GOOGLE_PROCESS_PREFIX, GOOGLE_VERSIONS_FILE
+elsif ARGV.length == 3
+    $src_dir, $dst_prefix, $versions_file = ARGV
+else
+    raise 'expected arguments: src dir, dst prefix, versions file'
+end
 
 require_relative 'process'
 
