@@ -24,6 +24,8 @@ Many of its features (but by far not all) are used in [`process.rb`](process.rb)
 
 Tested with Ruby 2.7.1, older versions may not work.
 
+Tested on macOS (10.14 Mojave), but should also work on Linux, and maybe even Windows.
+
 ## Usage
 
 ### Installation
