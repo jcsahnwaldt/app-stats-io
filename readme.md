@@ -50,10 +50,10 @@ Create folders in which you want to store the downloaded / processed data.
 
 ### Execution
 
-* [`download_google.rb`](download_google.rb): download Google data
-* [`download_apple.rb`](download_apple.rb): download Apple data
-* [`process_google.rb`](process_google.rb): process Google data
-* [`process_apple.rb`](process_apple.rb): process Apple data
+* [`download_google.rb`](download_google.rb) - download Google data
+* [`download_apple.rb`](download_apple.rb) - download Apple data
+* [`process_google.rb`](process_google.rb) - process Google data
+* [`process_apple.rb`](process_apple.rb) - process Apple data
 
 A convenient way to configure the scripts is copying `config_template.rb` to
 `config.rb` and replacing the example values with your configuration data.
@@ -66,13 +66,13 @@ its configuration values from the arguments.
 
 You can also use these [`Makefile`](Makefile) targets:
 
-* `make download_google`: download Google data
-* `make download_apple`: download Apple data
-* `make process_google`: process Google data
-* `make process_apple`: process Apple data
-* `make download`: download all data
-* `make process`: process all data
-* `make all` or just `make`: download and process all data
+* `make download_google` - download Google data
+* `make download_apple` - download Apple data
+* `make process_google` - process Google data
+* `make process_apple` - process Apple data
+* `make download` - download all data
+* `make process` - process all data
+* `make all` or just `make` - download and process all data
 
 Since the `Makefile` targets call the scripts without arguments, they require `config.rb`.
 
