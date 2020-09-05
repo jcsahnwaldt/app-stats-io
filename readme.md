@@ -40,6 +40,9 @@ how to find / generate the values.
 
 Create folders in which you want to store the downloaded / processed data.
 
+A convenient way to configure the scripts is copying `config_template.rb` to
+`config.rb` and replacing the example values with your configuration data.
+
 ### Execution
 
 * [`download_google.rb`](download_google.rb) - download Google data
@@ -47,8 +50,6 @@ Create folders in which you want to store the downloaded / processed data.
 * [`process_google.rb`](process_google.rb) - process Google data
 * [`process_apple.rb`](process_apple.rb) - process Apple data
 
-A convenient way to configure the scripts is copying `config_template.rb` to
-`config.rb` and replacing the example values with your configuration data.
 When the download and process commands are called without arguments, they read
 their configuration from `config.rb`.
 
