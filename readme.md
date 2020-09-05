@@ -1,7 +1,7 @@
 # util-app-stats
 
-Command-line tools for downloading and processing statistics about your
-mobile app from Google and Apple.
+Command-line tools for downloading and processing statistics about a mobile
+app from Google and Apple.
 
 The download scripts [`download_google.rb`](download_google.rb) and 
 [`download_apple.rb`](download_apple.rb) should work well for anyone
