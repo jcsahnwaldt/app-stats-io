@@ -68,9 +68,9 @@ You can also use these [`Makefile`](Makefile) targets:
 
 * `make download_google` downloads Google data
 * `make download_apple` downloads Apple data
-* `make download` downloads all data
 * `make process_google` processes Google data
 * `make process_apple` processes Apple data
+* `make download` downloads all data
 * `make process` processes all data
 * `make all` or just `make` downloads and processes all data
 
