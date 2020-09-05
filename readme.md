@@ -26,7 +26,7 @@ TODO: list required Ruby gems.
 
 ## Usage
 
-Clone the repo. Then find (or generate, respectively) the following configuration values:
+Clone this repo. Then find (or generate) the following configuration values:
 
 * Your Google access token
 * Your Google bucket ID
@@ -36,8 +36,22 @@ Clone the repo. Then find (or generate, respectively) the following configuratio
 See [`config_template.rb`](config_template.rb) for details.
 
 Create folders in which you want to store the downloaded / processed data.
-Copy `config_template.rb` to `config.rb` and enter your configuration data.
-Then run [`make`](Makefile):
+
+The most convenient way to configure the download and processing scripts is
+copying `config_template.rb` to `config.rb` and replacing the example values
+with your configuration data.
+
+* [`download_google.rb`](download_google.rb) downloads Google data
+* [`download_apple.rb`](download_apple.rb) downloads Apple data
+* [`process_google.rb`](process_google.rb) processes Google data
+* [`process_apple.rb`](process_apple.rb) processes Apple data
+
+When one of these scripts is called without arguments, it reads its configuration
+from `config.rb`. Creating `config.rb` is not strictly necessary though: If one
+of these commands is called with command line arguments, it ignores `config.rb`
+and takes all its configuration values from the arguments.
+
+You can also use these [`Makefile`](Makefile) targets:
 
 * `make download_google` downloads Google data
 * `make download_apple` downloads Apple data
@@ -47,13 +61,7 @@ Then run [`make`](Makefile):
 * `make process` processes all data
 * `make all` or just `make` downloads and processes all data
 
-Of course, you can also call the Ruby scripts directly and pass the configuration
-values as command line arguments:
-
-* [`download_google.rb`](download_google.rb) downloads Google data
-* [`download_apple.rb`](download_apple.rb) downloads Apple data
-* [`process_google.rb`](process_google.rb) processes Google data
-* [`process_apple.rb`](process_apple.rb) processes Apple data
+Since the `Makefile` targets call the scripts without arguments, they require `config.rb`.
 
 ## Known issues
 
