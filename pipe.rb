@@ -1,8 +1,4 @@
 
-require 'csv'
-require 'libxml-ruby'
-require 'sqlite3'
-
 # generic base classes
 
 class Pipe
@@ -591,267 +587,38 @@ def single_head()
     SingleHead.new()
 end
 
-# CSV classes
-
-class FromCSV < FinPipe
-    def initialize(path = nil, **options)
-        @path = path
-        @options = options
-    end
-
-    def call(path = nil)
-        path = @path unless path
-        CSV.foreach(path, **@options) do |row|
-            if row.header_row?
-                @dst.head(row.headers)
-            else
-                @dst.row(row.to_hash)
-            end
-        end
-    end
-end
+# CSV
 
 def from_csv(...)
+    require_relative 'pipe_csv'
     FromCSV.new(...)
 end
 
-class ToCSV
-    def initialize(io, **options)
-        @io = io
-        @options = options
-    end
-
-    def head(row)
-        @csv ||= start()
-        @csv << row
-    end
-
-    def row(row)
-        @csv ||= start()
-        @csv << row.values
-    end
-
-    def finish(ok)
-        @io.close if @close
-    end
-
-    private
-
-    def start()
-        if @io.is_a? String
-            @io = File.new(@io, 'w')
-            @close = true
-        end
-        CSV.new(@io, **@options)
-    end
-end
-
 def to_csv(...)
+    require_relative 'pipe_csv'
     ToCSV.new(...)
 end
 
-# XML classes
-
-class XMLCallbacks
-    include LibXML::XML::SaxParser::Callbacks
-
-    def initialize(dst)
-        @dst = dst
-        @depth = 0
-    end
-
-    def on_start_element(name, attrs)
-        @depth += 1
-        case @depth
-        when 2  # row element start
-            @row = attrs
-        when 3  # item element start
-            @key = attrs.first[1]
-            @val = ''
-        end
-    end
-
-    def on_end_element(name)
-        case @depth
-        when 2  # row element end
-            @dst.row @row
-            @row = nil
-        when 3  # item element end
-            @row[@key] = @val
-            @key = @val = nil
-        end
-        @depth -= 1
-    end
-
-    def on_characters chars
-        @val << chars if @val
-    end
-
-    def on_cdata_block chars
-        @val << chars if @val
-    end
-end
-
-class FromXML < FinPipe
-    def initialize(io = nil)
-        @io = io
-    end
-
-    def call(io = nil)
-        io = @io unless io
-        # TODO: ensure close file
-        parser = io.is_a?(String) ? LibXML::XML::SaxParser.file(io) : LibXML::XML::SaxParser.io(io)
-        parser.callbacks = XMLCallbacks.new @dst
-        parser.parse
-    end
-end
+# XML
 
 def from_xml(...)
+    require_relative 'pipe_xml'
     FromXML.new(...)
 end
 
-class ToXML
-    def initialize(io, root, row, item = nil, attr = nil, *attrs, **options)
-        @io = io
-        @root = root
-        @row = row
-        @item = item
-        @attr = attr
-        @attrs = attrs
-        @options = options
-    end
-
-    def head(row)
-        @xml ||= start()
-    end
-
-    def row(row)
-        @xml ||= start()
-        @xml.start_element(@row)
-        if @item
-            row.each do |key, val|
-                next unless @attrs.include? key
-                @xml.write_attribute(key.to_s, val.to_s)
-            end
-            row.each do |key, val|
-                next if @attrs.include? key
-                @xml.start_element(@item)
-                @xml.write_attribute(@attr.to_s, key.to_s)
-                @xml.write_string(val.to_s)
-                @xml.end_element()
-            end
-        else
-            row.each do |key, val|
-                @xml.write_attribute(key.to_s, val.to_s)
-            end
-        end
-        @xml.end_element()
-    end
-
-    def finish(ok)
-        if ok && @xml
-            @xml.end_element()
-            @xml.end_document()
-        end
-        @io.close if @close
-    end
-
-    private
-
-    def start()
-        if @io.is_a? String
-            @io = File.new(@io, 'w')
-            @close = true
-        end
-        xml = LibXML::XML::Writer.io(@io)
-        xml.set_indent(@options[:indent])
-        xml.set_indent_string(@options[:indent_string])
-
-        xml.start_document(encoding: LibXML::XML::Encoding::UTF_8)
-        xml.start_element(@root)
-        xml
-    end
-end
-
 def to_xml(...)
+    require_relative 'pipe_xml'
     ToXML.new(...)
 end
 
-# DB classes
-
-class FromDB < FinPipe
-    def initialize(path = nil, table = nil)
-        @path = path
-        @table = table
-    end
-
-    def call(path = nil, table = nil)
-        path = @path unless path
-        table = @table unless table
-        SQLite3::Database.new(path) do |db|
-            select = %{SELECT * FROM "#{table}";}
-            db.prepare(select) do |stmt|
-                result = stmt.execute()
-                @dst.head(stmt.columns)
-                result.each_hash { @dst.row(_1) }
-            end
-        end
-    end
-end
+# DB
 
 def from_db(...)
+    require_relative 'pipe_db'
     FromDB.new(...)
 end
 
-class ToDB
-    def initialize(path, table)
-        @path = path
-        @table = table
-    end
-
-    def head(row)
-        @db ||= start()
-    end
-
-    def row(row)
-        @db ||= start()
-        @stmt ||= prepare_db(row)
-        @stmt.execute row.values
-    end
-
-    def finish(ok)
-        if @db
-            if ok then @db.commit
-            else @db.rollback end
-            @stmt.close if @stmt
-            @db.close
-        end
-    end
-
-    private
-
-    def start()
-        db = SQLite3::Database.new(@path)
-        db.transaction
-        db
-    end
-
-    def prepare_db(row)
-        drop = %{DROP TABLE IF EXISTS "#{@table}";}
-
-        types = Hash.new('BLOB').merge!(Integer => 'INTEGER', Float => 'REAL', String => 'TEXT')
-        col_types = row.map { |key, val| %{"#{key}" #{types[val.class]}} }.join(', ')
-        create = %{CREATE TABLE "#{@table}" (#{col_types});}
-
-        params = row.map{'?'}.join(', ')
-        insert = %{INSERT INTO "#{@table}" VALUES (#{params});}
-
-        @db.execute drop
-        @db.execute create
-        @db.prepare insert
-    end
-end
-
 def to_db(...)
+    require_relative 'pipe_db'
     ToDB.new(...)
 end

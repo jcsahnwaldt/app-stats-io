@@ -10,6 +10,7 @@ else
 end
 
 require_relative 'process'
+require 'csv'
 
 header_converter =
     replace('App Version Code' => 'Version', 'Daily Device Installs' => 'Units') >>
