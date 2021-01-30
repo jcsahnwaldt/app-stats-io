@@ -29,8 +29,8 @@ $file_order = -> name { name.match(/_(\d+)\.txt/)[1] }
 pipe =
 ensure_finish() **
 
-# read files: only day data for 2020, only year data for other years
-each_file($src_dir, $file_order, 'S_D_*_2020*.txt', 'S_Y_*.txt') **
+# read files: only day data for 202x, only year data for other years
+each_file($src_dir, $file_order, 'S_D_*_202?*.txt', 'S_Y_*.txt') **
 from_csv(**$src_options) **
 single_head() **
 
