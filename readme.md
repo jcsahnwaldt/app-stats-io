@@ -48,6 +48,12 @@ I managed to install libxml-ruby by running
 gem install libxml-ruby -- --with-xml2-config=/usr/bin/xml2-config
 ```
 
+On Linux, you may have to install `libxml2-dev` first, e.g.
+
+```
+sudo apt-get install libxml2-dev
+```
+
 ## Install Ruby sqlite3 for reading / writing SQLite
 
 *TODO: improve `pipe.rb`: users who don't want to read/write SQLite
@@ -55,6 +61,12 @@ should not have to install this gem.*
 
 ```
 gem install sqlite3
+```
+
+On Linux, you may have to install `libsqlite3-dev` first, e.g.
+
+```
+sudo apt install libsqlite3-dev
 ```
 
 ## Google configuration
