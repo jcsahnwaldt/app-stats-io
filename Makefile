@@ -16,3 +16,6 @@ process_google:
 
 process_apple:
 	time ruby process_apple.rb
+
+clean:
+	$(RM) -r venv/
