@@ -264,10 +264,12 @@ class MapCols < ModRows
         @rfns.each { |fn| fn.call(row) }
         @cfns.each do |key, map|
             next unless row.include? key
-            row[key] = case map
+            val = case map
             when Proc, Method, Hash then map[row[key]]
             # TODO: Proc or Method with arity two should take row[key] and row
             else map end
+            raise "mapping for value '#{row[key]}' in column '#{key}' is nil" if val.nil?
+            row[key] = val
         end
         row
     end
