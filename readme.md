@@ -3,7 +3,7 @@
 Command-line tools for downloading and processing statistics about a mobile
 app from Google and Apple.
 
-The download scripts [`download_google.rb`](download_google.rb) and 
+The download scripts [`download_google.rb`](download_google.rb) and
 [`download_apple.rb`](download_apple.rb) download all available statistics
 files. You probably won't need them all, but the download usually only takes
 a couple of seconds.
