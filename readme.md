@@ -1,4 +1,4 @@
-# util-app-stats
+# app-stats-io
 
 Command-line tools for downloading and processing statistics about a mobile
 app from Google and Apple.
@@ -24,8 +24,8 @@ but your data processing needs will likely be different.
 Clone this repository:
 
 ```
-git clone https://github.com/jcsahnwaldt/util-app-stats.git
-cd util-app-stats
+git clone https://github.com/jcsahnwaldt/app-stats-io.git
+cd app-stats-io
 ```
 
 Copy `config_template.rb` to `config.rb`.
