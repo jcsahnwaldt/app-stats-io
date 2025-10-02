@@ -22,7 +22,7 @@ GOOGLE_APP_ID='com.domain.app_id'
 # Path to Google app version mapping file.
 GOOGLE_VERSIONS_FILE='google_versions.txt'
 
-# Your Apple access token. See e.g. https://help.apple.com/itc/contentreporterguide/en.lproj/static.html#apd3552c62e4
+# Your Apple access token. See e.g. https://appstoreconnect.apple.com/trends/reports > About Reports > Generate Reporter Token
 APPLE_TOKEN='01234567-89ab-cdef-0123-456789abcdef'
 # Your Apple vendor ID. See e.g. https://discussions.apple.com/thread/3308523
 APPLE_VENDOR='12345678'
